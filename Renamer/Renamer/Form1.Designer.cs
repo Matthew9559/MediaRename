@@ -47,7 +47,6 @@
             this.MovieRadioButton.TabStop = true;
             this.MovieRadioButton.Text = "Movie";
             this.MovieRadioButton.UseVisualStyleBackColor = true;
-            this.MovieRadioButton.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // TVShowRadioButton
             // 
@@ -102,7 +101,6 @@
             this.FilesRenamedLabel.Size = new System.Drawing.Size(81, 13);
             this.FilesRenamedLabel.TabIndex = 6;
             this.FilesRenamedLabel.Text = "Files renamed...";
-            this.FilesRenamedLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // Form1
             // 
