@@ -56,6 +56,7 @@ namespace Renamer
             //    ogFilesWithDirectory.Add(directoryPath + '\\' + ogFile);
             //}
             //LINQ Version:
+
             List<string> ogFilesWithDirectory = filesBeforeTrim.Select(ogFile => directoryPath + '\\' + ogFile).ToList();
 
             using (var e1 = ogFilesWithDirectory.GetEnumerator())
@@ -67,16 +68,23 @@ namespace Renamer
                 if (e1.Current == e2.Current)
                 {
                     MessageBox.Show("Files are already named as designated scheme");
-                    Application.Restart();                    
+                    Application.Restart();
                 }
-
-                System.IO.File.Move(e1.Current,e2.Current);
-                MessageBox.Show("Files renamed succesfully");
+                    File.Move(e1.Current,e2.Current);
               }
             }
             catch (Exception ex)
-            { 
-                MessageBox.Show("There was an issue with renmaing the file due to the following exception: " + ex.ToString());
+            {
+                if (TargetFiles.Count() > 1)
+                {
+                    MessageBox.Show("There was an issue with renaming the files");
+                }
+                else
+                {
+                    MessageBox.Show("There was an issue with renaming the files");
+                }
+
+                File.AppendAllText(directoryPath, "There was an error because of: " + ex);
             }
         }
     }
