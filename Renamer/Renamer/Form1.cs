@@ -38,12 +38,21 @@ namespace Renamer
 
             string directoryPath = Path.GetDirectoryName(TargetDirectory);
             string fileExtension = Path.GetExtension(filesBeforeTrim[0]); //assumes all files have same extension
-            string renamingSchemeTrimmed = renameSchemeTextBox.Text.Remove(renameSchemeTextBox.Text.Length - 2);
+            string renamingSchemeTrimmed = string.Empty;
             List<string> newFilesName = new List<string>();
             int episodes = 1;
 
-            //rename each file to be moved
-            foreach(string file in filesBeforeTrim)
+            if (renameSchemeTextBox.Text.Length < 2)
+            {
+                MessageBox.Show("Please enter a valid scheme, i.e. Walking Dead s01e01");
+                Application.Restart();
+            }
+            else
+            {
+                renamingSchemeTrimmed = renameSchemeTextBox.Text.Remove(renameSchemeTextBox.Text.Length - 2);
+            }
+
+            foreach (string file in filesBeforeTrim)
             {
                 string episodesPadded = episodes.ToString().PadLeft(2, '0');
                 newFilesName.Add(directoryPath + "\\" + renamingSchemeTrimmed + episodesPadded + fileExtension);
@@ -67,7 +76,7 @@ namespace Renamer
               {
                 if (e1.Current == e2.Current)
                 {
-                    MessageBox.Show("Files are already named as designated scheme");
+                    MessageBox.Show("Files are already named as the designated scheme");
                     Application.Restart();
                 }
                     File.Move(e1.Current,e2.Current);
