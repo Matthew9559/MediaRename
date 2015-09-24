@@ -81,8 +81,10 @@ namespace Renamer
                 }
                     File.Move(e1.Current,e2.Current);
               }
-            }
-            catch (Exception ex)
+                    MessageBox.Show("All files have been renamed succesfully!");
+
+                }
+                catch (Exception ex)
             {
                 if (TargetFiles.Count() > 1)
                 {
